@@ -9,6 +9,15 @@
     "case_count": 0,
     "execution_count": 0
   },
+  "liveCase": {
+    "controller": "0xeb57bc7125fa60d7482ce12058397369ab3581f8",
+    "caseId": "restart-001",
+    "assetId": "pump-17",
+    "status": "PERMIT_CONSUMED",
+    "verdict": "CLEARED",
+    "assessmentDigest": "ca7d44ec5aa3602fcf9433d39dcf330786f6295ef2e4a59e811e59b000745823",
+    "receipt": "22e675224b5873f3e1c3f2910333bb94d1b0b9b8fb4cec649b261770041525a1"
+  },
   "deployerRole": "deployment-only",
   "runtimeRoles": {
     "controller": "test-wallet-a",

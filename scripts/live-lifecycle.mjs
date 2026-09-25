@@ -29,11 +29,22 @@ const technician = [required("TECHNICIAN_REPOSITORY"), required("TECHNICIAN_URL"
 const inspector = [required("INSPECTOR_REPOSITORY"), required("INSPECTOR_URL"), required("INSPECTOR_SHA256"), BigInt(required("INSPECTOR_BYTES"))];
 
 const read = async (method, args = []) => JSON.parse(await clients.a.readContract({ address, functionName: method, args }));
+const retry = async (operation, attempts = 5) => {
+  let cause;
+  for (let index = 0; index < attempts; index++) {
+    try { return await operation(); }
+    catch (error) {
+      cause = error;
+      if (index < attempts - 1) await new Promise(resolve => setTimeout(resolve, 1500 * (index + 1)));
+    }
+  }
+  throw cause;
+};
 const transact = async (label, client, method, args, expectSuccess = true) => {
   const hash = await client.writeContract({ address, functionName: method, args, value: 0n });
   console.log(JSON.stringify({ label, hash, phase: "submitted" }));
   const receipt = await client.waitForTransactionReceipt({ hash, status: TransactionStatus.FINALIZED, interval: 2500, retries: 360 });
-  const tx = await client.getTransaction({ hash });
+  const tx = await retry(() => client.getTransaction({ hash }));
   const leader = tx.consensus_data?.leader_receipt?.[0];
   const result = tx.result_name ?? tx.resultName ?? receipt.resultName ?? "";
   const execution = leader?.execution_result ?? tx.txExecutionResultName ?? receipt.txExecutionResultName ?? "";
