@@ -1,0 +1,40 @@
+:root {
+  --font-display: "Bahnschrift Condensed", "DIN Condensed", "Arial Narrow", sans-serif;
+  --font-body: "Aptos", "Segoe UI", sans-serif;
+}
+
+.primary:disabled {
+  cursor: not-allowed;
+  opacity: .42;
+  transform: none;
+  box-shadow: 3px 3px 0 var(--ink);
+}
+
+.action-row small {
+  max-width: 340px;
+  margin-top: 4px;
+  color: rgba(16, 37, 31, .62);
+}
+
+.provenance-ledger {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--ink);
+}
+
+.provenance-ledger span {
+  padding: 17px 35px;
+  border-right: 1px solid var(--ink);
+  font-family: var(--font-display);
+  font-size: 12px;
+  letter-spacing: .08em;
+}
+
+.provenance-ledger span:last-child { border-right: 0; }
+.provenance-ledger b { float: right; }
+
+@media (max-width: 900px) {
+  .provenance-ledger { grid-template-columns: 1fr; }
+  .provenance-ledger span { border-right: 0; border-bottom: 1px solid var(--ink); }
+}

@@ -1,0 +1,19 @@
+{
+  "network": "studionet",
+  "chainId": 61999,
+  "contractAddress": "0x18d02CA86fAFd488A7d1aD978D661B3281BC0afd",
+  "contract": "contracts/safe_restart.py",
+  "verifiedAt": "2026-09-25",
+  "schemaVerified": true,
+  "initialState": {
+    "case_count": 0,
+    "execution_count": 0
+  },
+  "deployerRole": "deployment-only",
+  "runtimeRoles": {
+    "controller": "test-wallet-a",
+    "technician": "test-wallet-a",
+    "inspector": "test-wallet-b",
+    "operator": "test-wallet-b"
+  }
+}
